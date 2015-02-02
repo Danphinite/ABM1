@@ -10,12 +10,10 @@ function handler() {
 			GET_USER,
 			DELETE_USER,
 			EDIT_USER,
-			LOGIN_USER,
 			VIEW_SET_USER,
 			VIEW_GET_USER,
 			VIEW_DELETE_USER,
 			VIEW_EDIT_USER,
-			VIEW_LOGIN_USER,
 	);
 	foreach ( $peticiones as $peticion ) {
 		$uri_peticion = MODULO . $peticion . '/';
