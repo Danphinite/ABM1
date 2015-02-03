@@ -10,7 +10,7 @@ class Usuario extends DBAbstractModel {
 	protected $id;
 	
 	// Método constructor
-	function __construct(){
+	function __construct() {
 		$this->db_name = 'ejemplo_php';
 	}
 	
@@ -28,6 +28,7 @@ class Usuario extends DBAbstractModel {
 			}
 			$this->mensaje = 'Usuario encontrado';
 		} else {
+			// echo "Usuario no encontrado";
 			$this->mensaje = 'Usuario no encontrado';
 		}
 	}
@@ -57,10 +58,10 @@ class Usuario extends DBAbstractModel {
 		foreach ( $user_data as $campo => $valor ) {
 			$$campo = $valor;
 		}
-		$this->query = "UPDATE usuarios SET nombre='$nombre', apellido='$apellido'
-						WHERE email = '$email'";
-		$this->execute_single_query ();
-		$this->mensaje = 'Usuario modificado';
+			$this->query = "UPDATE usuarios SET nombre='$nombre', apellido='$apellido'
+							WHERE email = '$email'";
+			$this->execute_single_query ();
+			$this->mensaje = 'Usuario modificado';
 	}
 	
 	// Modificar un dato de un usuario
@@ -74,9 +75,12 @@ class Usuario extends DBAbstractModel {
 				if ($contador < count ( $user_data ) - 1) :
 					$this->query .= ",";
 					$contador ++;
+				
 				endif;
+			
 			endif;
-		endforeach;
+		endforeach
+		;
 		$this->query .= " WHERE email = '$email'";
 		// echo $this->query;
 		$this->execute_single_query ();
@@ -85,9 +89,18 @@ class Usuario extends DBAbstractModel {
 	
 	// Eliminar un usuario
 	public function delete($user_email = '') {
-		$this->query = "DELETE FROM usuarios WHERE email = '$user_email'";
-		$this->execute_single_query ();
-		$this->mensaje = 'Usuario eliminado';
+		if ($user_email) {
+			$this->get ( $user_email );
+			if ($user_email == $this->email) {
+				$this->query = "DELETE FROM usuarios WHERE email = '$user_email'";
+				$this->execute_single_query ();
+				$this->mensaje = 'Usuario eliminado';
+			} else {
+				$this->mensaje = 'El usuario no existe';
+			}
+		} else {
+			$this->mensaje = 'Introduzca email';
+		}
 	}
 	
 	// Método destructor del objeto

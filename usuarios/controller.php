@@ -38,7 +38,12 @@ function handler() {
 					'apellido' => $usuario->apellido,
 					'email' => $usuario->email 
 			);
-			retornar_vista ( VIEW_EDIT_USER, $data );
+			if($usuario->mensaje != 'Usuario no encontrado') {
+				retornar_vista ( VIEW_EDIT_USER, $data );
+			} else {
+				$data = array('mensaje' => $usuario->mensaje);
+				retornar_vista ( VIEW_GET_USER, $data );
+			}
 			break;
 		case DELETE_USER :
 			$usuario->delete ( $user_data ['email'] );
