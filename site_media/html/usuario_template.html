@@ -9,15 +9,13 @@
 <body>
 	<div id="cabecera">
 		<h1>Administrador de usuarios</h1>
-		<div id="login" style="float: right; margin-right: 30px">
-			<h2><a href="/workspace/ABM1/{VIEW_LOGIN_USER}" title="Login usuario">Login</a></h2>
+		<div id="logout" style="float: right; margin-right: 30px">
+			{logout}
 		</div>
 		<h2>{subtitulo}</h2>
 	</div>
 	<div id="menu">
-		<a href="/workspace/ABM1/{VIEW_SET_USER}" title="Nuevo usuario">Agregar	usuario</a>
-		<a href="/workspace/ABM1/{VIEW_GET_USER}" title="Buscar usuario">Buscar/editar usuario</a>
-		<a href="/workspace/ABM1/{VIEW_DELETE_USER}" title="Borrar usuario">Borrar usuario</a>
+		{menu}
 	</div>
 	<div id="mensaje">{mensaje}</div>
 	<div id="formulario">{formulario}</div>

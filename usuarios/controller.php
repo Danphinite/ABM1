@@ -7,6 +7,7 @@ function handler() {
 	$uri = $_SERVER ['REQUEST_URI'];
 	$peticiones = array (
 			LOGIN_USER,
+			LOGOUT_USER,
 			SET_USER,
 			GET_USER,
 			DELETE_USER,
@@ -73,6 +74,10 @@ function handler() {
 				);
 				retornar_vista ( VIEW_LOGIN_USER, $data );
 			}
+			break;
+		case LOGOUT_USER :
+			$usuario->logout();
+			retornar_vista ( VIEW_LOGIN_USER, $data );
 			break;
 		default :
 			retornar_vista ( $event );

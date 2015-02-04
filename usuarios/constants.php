@@ -6,6 +6,7 @@ const GET_USER = 'get';
 const DELETE_USER = 'delete';
 const EDIT_USER = 'edit';
 const LOGIN_USER = 'login';
+const LOGOUT_USER = 'logout';
 // vistas
 const VIEW_SET_USER = 'alta';
 const VIEW_GET_USER = 'ver';

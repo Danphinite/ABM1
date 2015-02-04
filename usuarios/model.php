@@ -101,7 +101,7 @@ class Usuario extends DBAbstractModel {
 		//}
 			if (count ( $this->rows ) == 1) {
 				/* Hace el login */
-				
+				session_start();
 				$this->mensaje = 'Usuario logueado';
 			} else {
 				$this->mensaje = 'Error de acceso';
@@ -109,7 +109,7 @@ class Usuario extends DBAbstractModel {
 	}
 	
 	public function logout(){
-		
+		session_destroy();
 	}
 	
 	// Método destructor del objeto

@@ -19,7 +19,8 @@ $diccionario = array (
 				'SET' => '/workspace/ABM1/' . MODULO . SET_USER . '/',
 				'GET' => '/workspace/ABM1/' . MODULO . GET_USER . '/',
 				'DELETE' => '/workspace/ABM1/' . MODULO . DELETE_USER . '/',
-				'EDIT' => '/workspace/ABM1/' . MODULO . EDIT_USER . '/'
+				'EDIT' => '/workspace/ABM1/' . MODULO . EDIT_USER . '/',
+				'LOGOUT' => '/workspace/ABM1/' . MODULO . LOGOUT_USER . '/'
 		) 
 );
 function get_template($form = 'get') {
@@ -37,7 +38,15 @@ function retornar_vista($vista, $data = array()) {
 	global $diccionario;
 	$html = get_template ( 'template' );
 	$html = str_replace ( '{subtitulo}', $diccionario ['subtitle'] [$vista], $html );
-	$html = str_replace ( '{formulario}', get_template ( $vista ), $html );
+	if (isset($_SESSION)) {
+		$html = str_replace ( '{formulario}', get_template ( $vista ), $html );
+		$html = str_replace ( '{logout}', get_template ( 'logout' ), $html );
+		$html = str_replace('{menu}', get_template ( 'menu' ), $html);
+	} else {
+		$html = str_replace ( '{formulario}', get_template ( 'registro' ), $html );
+		$html = str_replace ( '{logout}', '', $html );
+		$html = str_replace('{menu}', '', $html);
+	}
 	$html = render_dinamic_data ( $html, $diccionario ['form_actions'] );
 	$html = render_dinamic_data ( $html, $diccionario ['links_menu'] );
 	$html = render_dinamic_data ( $html, $data );
