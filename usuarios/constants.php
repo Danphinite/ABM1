@@ -11,5 +11,5 @@ const VIEW_SET_USER = 'alta';
 const VIEW_GET_USER = 'ver';
 const VIEW_DELETE_USER = 'baja';
 const VIEW_EDIT_USER = 'modifica';
-const VIEW_LOGIN_USER = 'login';
+const VIEW_LOGIN_USER = 'registro';
 ?>

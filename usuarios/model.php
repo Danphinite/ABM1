@@ -6,7 +6,7 @@ class Usuario extends DBAbstractModel {
 	public $nombre;
 	public $apellido;
 	public $email;
-	private $clave;
+	public $clave;
 	protected $id;
 	
 	// Método constructor
@@ -90,21 +90,26 @@ class Usuario extends DBAbstractModel {
 		$this->mensaje = 'Usuario eliminado';
 	}
 	
-	public function login($user_email = '', $user_clave = ''){
-		if ($user_email != '' && $user_clave != '') {
-				$this->query = "SELECT email, clave
-								FROM usuarios WHERE email = '$user_email' AND clave = '$user_clave'";
-				$this->get_results_from_query ();
+	public function login($user_data = array()){
+		//if (array_key_exists ( 'email', $user_data )) {
+			foreach ( $user_data as $campo => $valor ) {
+				$$campo = $valor;
 			}
+			$this->query = "SELECT *
+							FROM usuarios WHERE email = '$email' AND clave = '$clave'";
+			$this->get_results_from_query ();
+		//}
 			if (count ( $this->rows ) == 1) {
 				/* Hace el login */
 				
 				$this->mensaje = 'Usuario logueado';
-				return true;
 			} else {
 				$this->mensaje = 'Error de acceso';
-				return false;
 			}
+	}
+	
+	public function logout(){
+		
 	}
 	
 	// Método destructor del objeto

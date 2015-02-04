@@ -10,10 +10,12 @@ abstract class DBAbstractModel {
 	public $mensaje = 'Hecho';
 	
 	// métodos abstractos para ABM de clases que hereden
+	abstract protected function login();
 	abstract protected function get();
 	abstract protected function set();
 	abstract protected function edit();
 	abstract protected function delete();
+	abstract protected function logout();
 	// los siguientes métodos pueden definirse con exactitud
 	// y no son abstractos
 	// Conectar a la base de datos

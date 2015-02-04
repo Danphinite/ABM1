@@ -3,19 +3,19 @@ require_once ('constants.php');
 require_once ('model.php');
 require_once ('view.php');
 function handler() {
-	$event = VIEW_GET_USER;
+	$event = VIEW_LOGIN_USER;
 	$uri = $_SERVER ['REQUEST_URI'];
 	$peticiones = array (
+			LOGIN_USER,
 			SET_USER,
 			GET_USER,
 			DELETE_USER,
 			EDIT_USER,
-			LOGIN_USER,
+			VIEW_LOGIN_USER,
 			VIEW_SET_USER,
 			VIEW_GET_USER,
 			VIEW_DELETE_USER,
-			VIEW_EDIT_USER,
-			VIEW_LOGIN_USER,
+			VIEW_EDIT_USER			
 	);
 	foreach ( $peticiones as $peticion ) {
 		$uri_peticion = MODULO . $peticion . '/';
@@ -56,19 +56,24 @@ function handler() {
 			);
 			retornar_vista ( VIEW_GET_USER, $data );
 			break;
-		/* case LOGIN_USER :
-			if ($usuario->login( $user_data['email'], $user_data['clave'])){
+		case LOGIN_USER :
+			$usuario->login( $user_data );
+			$data = array (
+					'email' => $usuario->email,
+					'clave' => $usuario->clave
+			);
+			if ($usuario->mensaje != 'Error de acceso'){
 				$data = array (
 						'mensaje' => $usuario->mensaje
 				);
-				retornar_vista ( VIEW_GET_USER, $data );
+				retornar_vista ( VIEW_SET_USER, $data );
 			} else {
 				$data = array (
 						'mensaje' => $usuario->mensaje
 				);
 				retornar_vista ( VIEW_LOGIN_USER, $data );
 			}
-			break; */
+			break;
 		default :
 			retornar_vista ( $event );
 	}

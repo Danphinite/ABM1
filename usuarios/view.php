@@ -1,25 +1,25 @@
 <?php
 $diccionario = array (
 		'subtitle' => array (
+				VIEW_LOGIN_USER => 'Login de usuario',
 				VIEW_SET_USER => 'Crear un nuevo usuario',
 				VIEW_GET_USER => 'Buscar usuario',
 				VIEW_DELETE_USER => 'Eliminar un usuario',
-				VIEW_EDIT_USER => 'Modificar usuario',
-				VIEW_LOGIN_USER => 'Login de usuario'
+				VIEW_EDIT_USER => 'Modificar usuario'
 		),
 		'links_menu' => array (
+				'VIEW_LOGIN_USER' => MODULO . VIEW_LOGIN_USER . '/',
 				'VIEW_SET_USER' => MODULO . VIEW_SET_USER . '/',
 				'VIEW_GET_USER' => MODULO . VIEW_GET_USER . '/',
 				'VIEW_EDIT_USER' => MODULO . VIEW_EDIT_USER . '/',
-				'VIEW_DELETE_USER' => MODULO . VIEW_DELETE_USER . '/',
-				'VIEW_LOGIN_USER' => MODULO . VIEW_LOGIN_USER . '/'
+				'VIEW_DELETE_USER' => MODULO . VIEW_DELETE_USER . '/'				
 		),
 		'form_actions' => array (
+				'LOGIN' => '/workspace/ABM1/' . MODULO . LOGIN_USER . '/',
 				'SET' => '/workspace/ABM1/' . MODULO . SET_USER . '/',
 				'GET' => '/workspace/ABM1/' . MODULO . GET_USER . '/',
 				'DELETE' => '/workspace/ABM1/' . MODULO . DELETE_USER . '/',
-				'EDIT' => '/workspace/ABM1/' . MODULO . EDIT_USER . '/',
-				'LOGIN' => '/workspace/ABM1/' . MODULO . LOGIN_USER . '/'
+				'EDIT' => '/workspace/ABM1/' . MODULO . EDIT_USER . '/'
 		) 
 );
 function get_template($form = 'get') {
