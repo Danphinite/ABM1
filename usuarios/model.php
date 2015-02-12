@@ -9,6 +9,7 @@ class Usuario extends DBAbstractModel {
 	public $clave;
 	protected $id;
 	
+	
 	// Método constructor
 	function __construct(){
 		$this->db_name = 'ejemplo_php';
@@ -102,6 +103,8 @@ class Usuario extends DBAbstractModel {
 			if (count ( $this->rows ) == 1) {
 				/* Hace el login */
 				session_start();
+				if (!isset($_SESSION['email']))
+					$_SESSION['email']=1;
 				$this->mensaje = 'Usuario logueado';
 			} else {
 				$this->mensaje = 'Error de acceso';
@@ -109,6 +112,8 @@ class Usuario extends DBAbstractModel {
 	}
 	
 	public function logout(){
+		session_start();
+		$this->mensaje = 'Usuario deslogueado';
 		session_destroy();
 	}
 	

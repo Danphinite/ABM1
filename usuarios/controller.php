@@ -28,11 +28,14 @@ function handler() {
 	$usuario = set_obj ();
 	switch ($event) {
 		case SET_USER :
-			$usuario->set ( $user_data );
-			$data = array (
-					'mensaje' => $usuario->mensaje 
-			);
-			retornar_vista ( VIEW_SET_USER, $data );
+			session_start();
+			if (isset($_SESSION[$email])) {
+				$usuario->set ( $user_data );
+				$data = array (
+						'mensaje' => $usuario->mensaje 
+				);
+				retornar_vista ( VIEW_SET_USER, $data );
+			}
 			break;
 		case GET_USER :
 			$usuario->get ( $user_data );
@@ -44,18 +47,18 @@ function handler() {
 			retornar_vista ( VIEW_EDIT_USER, $data );
 			break;
 		case DELETE_USER :
-			$usuario->delete ( $user_data ['email'] );
-			$data = array (
-					'mensaje' => $usuario->mensaje 
-			);
-			retornar_vista ( VIEW_DELETE_USER, $data );
+				$usuario->delete ( $user_data ['email'] );
+				$data = array (
+						'mensaje' => $usuario->mensaje 
+				);
+				retornar_vista ( VIEW_DELETE_USER, $data );
 			break;
 		case EDIT_USER :
-			$usuario->edit ( $user_data );
-			$data = array (
-					'mensaje' => $usuario->mensaje 
-			);
-			retornar_vista ( VIEW_GET_USER, $data );
+				$usuario->edit ( $user_data );
+				$data = array (
+						'mensaje' => $usuario->mensaje 
+				);
+				retornar_vista ( VIEW_GET_USER, $data );
 			break;
 		case LOGIN_USER :
 			$usuario->login( $user_data );
@@ -77,6 +80,9 @@ function handler() {
 			break;
 		case LOGOUT_USER :
 			$usuario->logout();
+			$data = array (
+					'mensaje' => $usuario->mensaje
+			);
 			retornar_vista ( VIEW_LOGIN_USER, $data );
 			break;
 		default :

@@ -38,7 +38,8 @@ function retornar_vista($vista, $data = array()) {
 	global $diccionario;
 	$html = get_template ( 'template' );
 	$html = str_replace ( '{subtitulo}', $diccionario ['subtitle'] [$vista], $html );
-	if (isset($_SESSION)) {
+	session_start();
+	if (isset($_SESSION['email'])) {
 		$html = str_replace ( '{formulario}', get_template ( $vista ), $html );
 		$html = str_replace ( '{logout}', get_template ( 'logout' ), $html );
 		$html = str_replace('{menu}', get_template ( 'menu' ), $html);
