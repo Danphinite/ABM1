@@ -3,7 +3,7 @@
 <html lang="es">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="stylesheet" type="text/css" href="/workspace/ABM1/site_media/css/base_template.css">
+<link rel="stylesheet" type="text/css" href="/ABM1/site_media/css/base_template.css">
 <title>ABM de Usuarios: {subtitulo}</title>
 </head>
 <body>
@@ -12,12 +12,21 @@
 		<h2>{subtitulo}</h2>
 	</div>
 	<div id="menu">
-		<a href="/workspace/ABM1/{VIEW_SET_USER}" title="Nuevo usuario">Agregar
-			usuario</a> <a href="/workspace/ABM1/{VIEW_GET_USER}" title="Buscar usuario">Buscar/editar
-			usuario</a> <a href="/workspace/ABM1/{VIEW_DELETE_USER}" title="Borrar usuario">Borrar
-			usuario</a>
+		<a href="/ABM1/{VIEW_SET_USER}" title="Nuevo usuario">
+			Agregar	usuario
+		</a>
+		<a href="/ABM1/{VIEW_GET_USER}" title="Editar usuario">
+			Editar usuario
+		</a>
+		<a href="/ABM1/{VIEW_DELETE_USER}" title="Borrar usuario">
+			Borrar usuario
+		</a>
+		<a href="/ABM1/{VIEW_SEARCH_USER}" title="Listar usuarios">
+			Listar usuarios
+		</a>
 	</div>
 	<div id="mensaje">{mensaje}</div>
 	<div id="formulario">{formulario}</div>
+	<div class="table">{table}</div>
 </body>
 </html>

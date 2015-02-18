@@ -96,3 +96,5 @@ input {
 #enviar:hover {
 	background-color: #6699FF;
 }
+
+table td {padding: 10px; font-size: 20px}

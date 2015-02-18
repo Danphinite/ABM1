@@ -6,6 +6,7 @@ class Usuario extends DBAbstractModel {
 	public $nombre;
 	public $apellido;
 	public $email;
+	public $listado = array();
 	private $clave;
 	protected $id;
 	
@@ -64,7 +65,7 @@ class Usuario extends DBAbstractModel {
 	}
 	
 	// Modificar un dato de un usuario
-	public function edit_1($user_data = array()) {
+	/*public function edit_1($user_data = array()) {
 		$email = $user_data ['email'];
 		$this->query = "UPDATE usuarios SET ";
 		$contador = 1;
@@ -81,6 +82,20 @@ class Usuario extends DBAbstractModel {
 		// echo $this->query;
 		$this->execute_single_query ();
 		$this->mensaje = 'Usuario modificado';
+	}*/
+	
+	public function search ($user_caption = ''){
+		if ($user_caption != '') {
+			$this->query = "SELECT nombre,apellido,email FROM usuarios
+				WHERE nombre LIKE '%$user_caption%' OR email LIKE '%$user_caption%'";
+			$this->get_results_from_query ();
+		}
+		if (count ( $this->rows ) >= 1) {
+			$this->listado = $this->rows;
+			$this->mensaje = 'Usuarios encontrados';
+		} else {
+			$this->mensaje = 'Usuarios no encontrados';
+		}
 	}
 	
 	// Eliminar un usuario

@@ -3,17 +3,19 @@ require_once ('constants.php');
 require_once ('model.php');
 require_once ('view.php');
 function handler() {
-	$event = VIEW_GET_USER;
+	$event = VIEW_SET_USER;
 	$uri = $_SERVER ['REQUEST_URI'];
 	$peticiones = array (
 			SET_USER,
 			GET_USER,
 			DELETE_USER,
 			EDIT_USER,
+			SEARCH_USER,
 			VIEW_SET_USER,
 			VIEW_GET_USER,
 			VIEW_DELETE_USER,
 			VIEW_EDIT_USER,
+			VIEW_SEARCH_USER
 	);
 	foreach ( $peticiones as $peticion ) {
 		$uri_peticion = MODULO . $peticion . '/';
@@ -22,6 +24,7 @@ function handler() {
 		}
 	}
 	$user_data = helper_user_data ();
+	//var_dump($user_data);
 	$usuario = set_obj ();
 	switch ($event) {
 		case SET_USER :
@@ -54,6 +57,11 @@ function handler() {
 			);
 			retornar_vista ( VIEW_GET_USER, $data );
 			break;
+		case SEARCH_USER :
+			$usuario->search( $user_data );
+			$data = $usuario->listado;
+			//$data['mensaje'] = $usuario->mensaje;
+			retornar_vista ( VIEW_SEARCH_USER, $data );
 		default :
 			retornar_vista ( $event );
 	}
@@ -80,6 +88,9 @@ function helper_user_data() {
 	} else if ($_GET) {
 		if (array_key_exists ( 'email', $_GET )) {
 			$user_data = $_GET ['email'];
+		}
+		if (array_key_exists ( 'search', $_GET )) {
+			$user_data = $_GET ['search'];
 		}
 	}
 	return $user_data;
