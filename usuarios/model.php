@@ -9,7 +9,6 @@ class Usuario extends DBAbstractModel {
 	public $clave;
 	protected $id;
 	
-	
 	// Método constructor
 	function __construct(){
 		$this->db_name = 'ejemplo_php';
@@ -92,29 +91,26 @@ class Usuario extends DBAbstractModel {
 	}
 	
 	public function login($user_data = array()){
-		//if (array_key_exists ( 'email', $user_data )) {
-			foreach ( $user_data as $campo => $valor ) {
-				$$campo = $valor;
-			}
-			$this->query = "SELECT *
-							FROM usuarios WHERE email = '$email' AND clave = '$clave'";
-			$this->get_results_from_query ();
-		//}
-			if (count ( $this->rows ) == 1) {
-				/* Hace el login */
-				session_start();
-				if (!isset($_SESSION['email']))
-					$_SESSION['email']=1;
-				$this->mensaje = 'Usuario logueado';
-			} else {
-				$this->mensaje = 'Error de acceso';
-			}
+		foreach ( $user_data as $campo => $valor ) {
+			$$campo = $valor;
+		}
+		$this->query = "SELECT * FROM usuarios WHERE email = '$email' AND clave = '$clave'";
+		$this->get_results_from_query ();
+		if (count ( $this->rows ) == 1) {
+			/* Hace el login */
+			session_start();
+			$_SESSION['user']=$email;
+			$this->mensaje = 'Usuario logueado';
+		} else {
+			$this->mensaje = 'Error de acceso';
+		}
 	}
 	
 	public function logout(){
 		session_start();
-		$this->mensaje = 'Usuario deslogueado';
+		session_unset();
 		session_destroy();
+		$this->mensaje = 'Usuario deslogueado';
 	}
 	
 	// Método destructor del objeto

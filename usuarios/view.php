@@ -39,7 +39,7 @@ function retornar_vista($vista, $data = array()) {
 	$html = get_template ( 'template' );
 	$html = str_replace ( '{subtitulo}', $diccionario ['subtitle'] [$vista], $html );
 	session_start();
-	if (isset($_SESSION['email'])) {
+	if (isset($_SESSION['user'])) {
 		$html = str_replace ( '{formulario}', get_template ( $vista ), $html );
 		$html = str_replace ( '{logout}', get_template ( 'logout' ), $html );
 		$html = str_replace('{menu}', get_template ( 'menu' ), $html);
@@ -58,7 +58,10 @@ function retornar_vista($vista, $data = array()) {
 		if (array_key_exists ( 'mensaje', $data )) {
 			$mensaje = $data ['mensaje'];
 		} else {
-			$mensaje = 'Datos del usuario:';
+			if(isset($_SESSION['user']))
+				$mensaje = 'Datos del usuario:';
+			else
+				$mensaje = 'Acceso de usuario:';
 		}
 	}
 	$html = str_replace ( '{mensaje}', $mensaje, $html );
