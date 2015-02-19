@@ -60,8 +60,9 @@ function handler() {
 		case SEARCH_USER :
 			$usuario->search( $user_data );
 			$data = $usuario->listado;
-			//$data['mensaje'] = $usuario->mensaje;
+			$data['mensaje'] = $usuario->mensaje;
 			retornar_vista ( VIEW_SEARCH_USER, $data );
+			break;
 		default :
 			retornar_vista ( $event );
 	}

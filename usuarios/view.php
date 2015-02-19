@@ -34,17 +34,21 @@ function render_dinamic_data($html, $data) {
 	return $html;
 }
 function creaTabla($data) {
-	$tabla = "<table border='2'><tr>";
+	$tabla = '<table><tr>';
+	/* Caso genérico 
 	foreach ( $data [0] as $titulo => $v )
-		$tabla .= "<th>" . $titulo . "</th>";
-	$tabla .= "</tr>";
+		$tabla .= "<th>" . $titulo . "</th>";*/
+	$tabla.='<th>Nombre</th><th>Apellido</th><th>Edad</th>';
+	$tabla .= '</tr>';
 	foreach ( $data as $k => $fila ) {
-			$tabla .= "<tr>";
+		if ($k !== 'mensaje') {
+			$tabla .= '<tr>';
 			foreach ( $fila as $k2 => $celda )
-				$tabla .= "<td>" . $celda . "</td>";
-			$tabla .= "</tr>";
+				$tabla .= '<td>' . $celda . '</td>';
+			$tabla .= '</tr>';
+		}
 	}
-	$tabla .= "</table>";
+	$tabla .= '</table>';
 	return $tabla;
 }
 
